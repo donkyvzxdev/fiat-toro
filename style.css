@@ -433,6 +433,10 @@ body {
 
 .truck-container {
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
 }
 
 .truck-glow {
@@ -452,21 +456,46 @@ body {
     50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
 }
 
-.truck-svg {
+.truck-image {
     width: 100%;
+    max-width: 600px;
     height: auto;
     position: relative;
     z-index: 2;
     filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.5));
+    object-fit: contain;
+    background: transparent;
+    border-radius: 20px;
 }
 
-.truck-svg .wheel {
-    animation: wheelSpin 8s linear infinite;
+.truck-overlay-text {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    z-index: 3;
 }
 
-@keyframes wheelSpin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+.truck-overlay-text .truck-badge {
+    color: var(--accent-blue);
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.truck-overlay-text .truck-engine {
+    color: var(--text-primary);
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.truck-overlay-text .truck-type {
+    color: var(--text-secondary);
+    font-family: var(--font-display);
+    font-size: 12px;
 }
 
 .floating-particles {
@@ -643,6 +672,64 @@ body {
     margin-top: 8px;
     text-transform: uppercase;
     letter-spacing: 0.1em;
+}
+
+/* Performance Stats Box - Unified */
+.performance-stats-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    padding: 40px 60px;
+    margin-bottom: 60px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.stat-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 40px;
+}
+
+.stat-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.stat-content {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+}
+
+.stat-section .stat-value {
+    font-family: var(--font-display);
+    font-size: 48px;
+    font-weight: 700;
+}
+
+.stat-section .stat-unit {
+    font-size: 18px;
+    color: var(--text-secondary);
+}
+
+.stat-label {
+    font-size: 13px;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 8px;
+}
+
+.stat-divider {
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(180deg, transparent, var(--glass-border), transparent);
 }
 
 /* Features Grid */
@@ -873,6 +960,15 @@ body {
 .color-info {
     font-size: 18px;
     font-weight: 600;
+    min-height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.color-name {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    will-change: opacity, transform;
 }
 
 /* Tech Section */
@@ -1108,6 +1204,21 @@ body {
     
     .engine-showcase {
         grid-template-columns: 1fr;
+    }
+    
+    .performance-stats-box {
+        flex-direction: column;
+        gap: 20px;
+        padding: 30px 20px;
+    }
+    
+    .stat-section {
+        padding: 20px 0;
+    }
+    
+    .stat-divider {
+        width: 80px;
+        height: 1px;
     }
     
     .features-grid,

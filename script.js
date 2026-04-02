@@ -177,13 +177,20 @@ function initColorPicker() {
             // Add active to clicked
             btn.classList.add('active');
             
-            // Animate color name change
+            // Animate color name change with smooth fade
             const color = btn.dataset.color;
+            colorName.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
             colorName.style.opacity = '0';
+            colorName.style.transform = 'translateY(-10px)';
             
             setTimeout(() => {
                 colorName.textContent = colorNames[color];
-                colorName.style.opacity = '1';
+                colorName.style.transform = 'translateY(10px)';
+                
+                requestAnimationFrame(() => {
+                    colorName.style.opacity = '1';
+                    colorName.style.transform = 'translateY(0)';
+                });
             }, 200);
             
             // Add ripple effect
